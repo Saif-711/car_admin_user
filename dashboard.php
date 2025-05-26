@@ -296,7 +296,7 @@ $imageFile = $_SESSION['image'] ?? 'default.png';
       <p>No Favourites Cars</p>
   <?php endif; ?>
 </div>
-<div id="orders" class="section">
+<div id="orders" class="section" style="margin-left: 80px;margin-top: 80px;">
   <?php
 $userId = $_SESSION['user_id']; // logged-in user id
 
@@ -324,7 +324,11 @@ $res = $conn->query("
       <?php 
         if ($r['status'] == 'accepted') {
           echo "<span style='color:green;'>Accepted</span>";
-        } else {
+        } 
+        elseif($r['status'] == 'rejected') {
+          echo "<span style='color:red;'>Rejected</span>";
+        } 
+        else {
           echo "<span style='color:orange;'>Pending</span>";
         }
       ?>

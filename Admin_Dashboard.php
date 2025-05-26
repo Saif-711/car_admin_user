@@ -314,18 +314,19 @@ tr:hover {
               <td><?= htmlspecialchars($r['car_id']) ?></td>
               <td><?= htmlspecialchars($r['title']) ?></td>
               <td>
-                <a href="delete_orders.php?order_id=<?= $r['id'] ?>" 
+                <a href="reject_orders.php?order_id=<?= $r['id'] ?>" 
                   onclick="return confirm('Are you sure you want to delete this order?')"
                   class="btn btn-del">
-                  Delete
+                  Reject
                 </a>   
                  <a href="confirm_request.php?order_id=<?= $r['id'] ?>" 
                   onclick="return confirm('Are you sure you want to Accept this request?')"
                   class="btn btn-del"
                   style="color:blue"
                   >
-                  Accept request
+                  Accept 
                 </a>   
+                
              
               </td>
             </tr>
