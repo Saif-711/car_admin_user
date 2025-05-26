@@ -167,7 +167,8 @@ $imageFile = $_SESSION['image'] ?? 'default.png';
  <a href="#chat" class="nav-link"><i class="fas fa-comments"></i> Chat with Admin</a>
 <a href="index.php"><i class="fas fa-car"></i> Browse Cars</a>
 <a href="#userinfo" class="nav-link"><i class="fas fa-user"></i> Personal Info</a>
-<a href="#favourites" class="nav-link"><i class="fas fa-user"></i> Favourites</a>
+<a href="#favourites" class="nav-link"><i class="fas fa-heart"></i> Favourites</a>
+<a href="#orders" class="nav-link"><i class="fas fa-list"></i> My Requests</a>
   <div class="logout-btn">
   <a href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
 </div>
@@ -295,6 +296,48 @@ $imageFile = $_SESSION['image'] ?? 'default.png';
       <p>No Favourites Cars</p>
   <?php endif; ?>
 </div>
+<div id="orders" class="section">
+  <?php
+$userId = $_SESSION['user_id']; // logged-in user id
+
+$res = $conn->query("
+  SELECT o.id, c.title, o.status
+  FROM orders o
+  JOIN cars c ON o.car_id = c.id
+  WHERE o.user_id = $userId
+");
+?>
+
+<h1>Your Buy Requests</h1>
+<?php if ($res->num_rows > 0): ?>
+<table>
+  <tr>
+    <th>Request ID</th>
+    <th>Car</th>
+    <th>Status</th>
+  </tr>
+  <?php while($r = $res->fetch_assoc()): ?>
+  <tr>
+    <td><?= $r['id'] ?></td>
+    <td><?= htmlspecialchars($r['title']) ?></td>
+    <td>
+      <?php 
+        if ($r['status'] == 'accepted') {
+          echo "<span style='color:green;'>Accepted</span>";
+        } else {
+          echo "<span style='color:orange;'>Pending</span>";
+        }
+      ?>
+    </td>
+  </tr>
+  <?php endwhile; ?>
+</table>
+<?php else: ?>
+  <p>You have no buy requests yet.</p>
+<?php endif; ?>
+
+  </div>
+
 
 
 <script>

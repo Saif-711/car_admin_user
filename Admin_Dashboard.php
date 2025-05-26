@@ -320,13 +320,13 @@ tr:hover {
                   Delete
                 </a>   
                  <a href="confirm_request.php?order_id=<?= $r['id'] ?>" 
-                  onclick="return confirm('Are you sure you want to confirm this request?')"
+                  onclick="return confirm('Are you sure you want to Accept this request?')"
                   class="btn btn-del"
                   style="color:blue"
                   >
-                  Delete
+                  Accept request
                 </a>   
-                <!-- <a href="contact.php?user_id=<?= $r['user_id'] ?>" class="btn btn-con">Contact</a> -->
+             
               </td>
             </tr>
           <?php endwhile; ?>

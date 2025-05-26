@@ -4,6 +4,14 @@ $host = "localhost";
 $user = "root";
 $password = "";
 $dbname = "car_store";
+if(isset($_SESSION['role'])){
+  if($_SESSION['role']==='ADMIN'){
+    header("Location:Admin_Dashboard.php");
+  }
+  else{
+    header("Location:index.php");
+  }
+}
 
 $conn = new mysqli($host, $user, $password, $dbname);
 if ($conn->connect_error) die("Connection failed: " . $conn->connect_error);
